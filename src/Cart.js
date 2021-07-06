@@ -12,11 +12,6 @@ const Cart = () => {
 
     const {products, cartItems, discountApplied, cartValue, discountAmount, } = useSelector(state => state);
 
-    console.log(cartItems);
-    console.log(products);
-    console.log(discountAmount);
-    console.log(cartValue);
-
     const handleChange = evt => {
         setDiscount(evt.target.value);
     }

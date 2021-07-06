@@ -1,14 +1,10 @@
 // calculate total price
 
 export const calculateTotal = (products, cart, discountAmount = 0) => {
-    console.log(cart);
-
     // total for each item in the cart
     const totalForEach = Object.keys(cart).map(id => {
         return products[id].price * (cart[id] || 0);
     })
-
-    console.log(totalForEach);
 
     let totalBeforeDiscount = totalForEach.reduce((a,b) => a + b, 0);
     let totalAfterDiscount = totalBeforeDiscount * (1 - discountAmount);

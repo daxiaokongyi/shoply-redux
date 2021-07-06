@@ -20,7 +20,6 @@ const DEFAULT_STATE = {
 // create root reducer
 const rootReducer = (state=DEFAULT_STATE, action) => {
     const {type, payload} = action;
-    console.log(type, payload);
 
     switch(type){
         case ADD_TO_CART: {
@@ -36,7 +35,6 @@ const rootReducer = (state=DEFAULT_STATE, action) => {
         case REMOVE_FROM_CART: {
             let itemsCopy = {...state.cartItems}
             // if the selected item is not in the cart, return 
-            console.log(itemsCopy[payload.id]);
             if (!itemsCopy[payload.id]) return state;
             // if the selected item exists, decrease the quantity by one 
             itemsCopy[payload.id] = state.cartItems[payload.id] - 1;
@@ -44,7 +42,6 @@ const rootReducer = (state=DEFAULT_STATE, action) => {
             if (itemsCopy[payload.id] === 0) {
                 delete itemsCopy[payload.id];
             }
-            console.log(itemsCopy);
             return {
                 ...state,
                 cartItems: itemsCopy,
@@ -54,8 +51,6 @@ const rootReducer = (state=DEFAULT_STATE, action) => {
         case APPLY_DISCOUNT: {
             // make sure discount can only be applied one time
             if(state.discountApplied === false && validDiscounts[payload.discount]){
-                console.log(validDiscounts[payload.discount]);
-
                 const discountAmount = validDiscounts[payload.discount];
                 const cartValue = calculateTotal(state.products, state.cartItems, discountAmount);
 
